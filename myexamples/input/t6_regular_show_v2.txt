@@ -1,0 +1,4 @@
+id;player_name;player_specie;player_gender
+8;Margarita;Robin-Human;F
+70;Papaleta;Humanoid Lollipop;M
+51;Starla;Humanoid;F

@@ -1,0 +1,6 @@
+seq;"artist_disc_year"
+1;"Los Redonditos de Ricota - Gulp! (1985)"
+2;"Los Redonditos de Ricota - Oktubre (1986)"
+3;"Los Redonditos de Ricota - Un baiÃ³n para el ojo idiota (1988)"
+4;"Los Redonditos de Ricota - Â¡Bang! Â¡Bang! EstÃ¡s liquidado (1989)"
+5;"Los Redonditos de Ricota - La mosca y la sopa (1991)"
