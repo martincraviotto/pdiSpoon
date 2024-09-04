@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <players>
-<trineo><id>11</id> <flagfield>new</flagfield></trineo>
-<trineo><id>32</id> <flagfield>identical</flagfield></trineo>
-<trineo><id>9</id> <flagfield>changed</flagfield></trineo>
-<trineo><id>5</id> <flagfield>identical</flagfield></trineo>
-<trineo><id>8</id> <flagfield>identical</flagfield></trineo>
-<trineo><id>70</id> <flagfield>identical</flagfield></trineo>
-<trineo><id>51</id> <flagfield>deleted</flagfield></trineo>
+<trineo><id>11</id> <player_name>Mordecai</player_name> <flagfield>new</flagfield></trineo>
+<trineo><id>32</id> <player_name>Rigby</player_name> <flagfield>identical</flagfield></trineo>
+<trineo><id>9</id> <player_name>Mitch</player_name> <flagfield>changed</flagfield></trineo>
+<trineo><id>5</id> <player_name>CJ</player_name> <flagfield>identical</flagfield></trineo>
+<trineo><id>8</id> <player_name>Margarita</player_name> <flagfield>identical</flagfield></trineo>
+<trineo><id>70</id> <player_name>Papaleta</player_name> <flagfield>identical</flagfield></trineo>
+<trineo><id>51</id> <player_name>Starla</player_name> <flagfield>deleted</flagfield></trineo>
 </players>
