@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tx_get_discografia_from_artist</name>
+    <name>t9_insert_update</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -427,59 +428,87 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2024/09/03 19:47:19.647</created_date>
+    <created_date>2024/09/05 20:30:17.908</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/09/03 19:47:19.647</modified_date>
-    <key_for_session_key/>
+    <modified_date>2024/09/05 20:30:17.908</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>Bonobo</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>Bonobo</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
+        <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
-      <from>Get files from result</from>
-      <to>Lee el archivo html temporal guardado</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Busca cada uno de los artistas</from>
-      <to>Write to log</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Lee el archivo html temporal guardado</from>
-      <to>Busca cada uno de los artistas</to>
+      <from>Data grid</from>
+      <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Get files from result</name>
-    <type>FilesFromResult</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Write to log</name>
-    <type>WriteToLog</type>
+    <name>Data grid</name>
+    <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -488,128 +517,88 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>----------------- ${Internal.Step.Name} 
------------------ Se ha recuperado el artista con nombre del archivo: </logmessage>
     <fields>
       <field>
-        <name>artista</name>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
-        <name>filename</name>
-      </field>
-      <field>
-        <name>url_of_artist</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Lee el archivo html temporal guardado</name>
-    <type>TextFileInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <accept_filenames>Y</accept_filenames>
-    <passing_through_fields>Y</passing_through_fields>
-    <accept_field>path</accept_field>
-    <accept_stepname>Get files from result</accept_stepname>
-    <separator>qwertyqwertyqwerty</separator>
-    <enclosure/>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
-    <header>Y</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field/>
-    <format>Unix</format>
-    <encoding/>
-    <length>Characters</length>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>CSV</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
-    <fields>
-      <field>
-        <name>line</name>
+        <name>prod</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>rub</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>prov</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
     </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>es_AR</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
+    <data>
+      <line>
+        <item>700</item>
+        <item>Prod 700</item>
+        <item>Rubro 1</item>
+        <item>Proveedor 1</item>
+      </line>
+      <line>
+        <item>701</item>
+        <item>Prod 701</item>
+        <item>Rubro 1</item>
+        <item>Proveedor 1</item>
+      </line>
+      <line>
+        <item>702</item>
+        <item>Prod X</item>
+        <item>Rubro X</item>
+        <item>Proveedor X</item>
+      </line>
+      <line>
+        <item>703</item>
+        <item>Prod X</item>
+        <item>Rubro X</item>
+        <item>Proveedor X</item>
+      </line>
+      <line>
+        <item>704</item>
+        <item>Prod 704</item>
+        <item>Rubro 7</item>
+        <item>Proveedor 7</item>
+      </line>
+    </data>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -619,14 +608,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>256</yloc>
+      <xloc>192</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Busca cada uno de los artistas</name>
-    <type>ScriptValueMod</type>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -635,64 +624,39 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>if(indexOf(line,text_searched) > -1) { //significa que encontró en la linea el texto buscado
-	artista=line.replace(/&lt;.[^>]*>/g,'');
-	match = line.match(/href=/g);
-	var match = line.match(/href="([^"]*)"/);
-	url_of_artist=match[1];
-
-	trans_Status = CONTINUE_TRANSFORMATION;
-}else
-	trans_Status = SKIP_TRANSFORMATION;
-
-
-
-// La expresión regular que se está usando es /&lt;.[^>]*>/g, y se está aplicando al método replace de JavaScript sobre el string line.
-// Aquí está un desglose de cada parte de la expresión regular:
-// &lt;: Esto busca un carácter &lt;. Es el comienzo de una etiqueta HTML o XML.
-// .: Esto busca cualquier carácter (excepto saltos de línea). En este contexto, busca cualquier cosa que esté después del &lt;.
-// [^>]*: Esta es una clase de caracteres que usa el símbolo ^ dentro de corchetes para indicar "todo menos". En este caso, [^>] significa "cualquier carácter que no sea >. El * significa "cero o más" del carácter anterior. Entonces, [^>]* busca cualquier cantidad de caracteres que no sean >.
-// >: Esto busca el carácter >. Es el final de una etiqueta HTML o XML.
-// /g: El modificador g significa "global", lo que significa que la búsqueda y reemplazo se aplicarán a todas las ocurrencias en el string, no solo a la primera.
-// En resumen, la expresión regular &lt;.[^>]*> busca y coincide con cualquier secuencia de caracteres que comienza con &lt;, sigue con cualquier carácter (excepto un >), y termina con >. Básicamente, está diseñada para encontrar etiquetas HTML o XML simples y cualquier texto que esté dentro de esas etiquetas.
-// El método replace en JavaScript reemplaza todas las ocurrencias que coinciden con la expresión regular con el valor que se le pase como segundo argumento, que en este caso es una cadena vacía ''. Por lo tanto, line.replace(/&lt;.[^>]*>/g, '') eliminará todas las etiquetas HTML o XML del string line, dejando solo el contenido que no esté dentro de esas etiquetas.
-// */
-// </jsScript_script>
-      </jsScript>
-      <jsScript>
-        <jsScript_type>1</jsScript_type>
-        <jsScript_name>Item_0</jsScript_name>
-        <jsScript_script>//Script here
-var text_searched = '/artistas/';  
-var artista;
-//var text_url_searched = ${v_url_band_disc};
-var match;</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>artista</name>
-        <rename>artista</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>url_of_artist</name>
-        <rename>url_of_artist</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
+    <connection>Bonobo</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>Bonobo</schema>
+      <table>Productos</table>
+      <key>
+        <name>id</name>
+        <field>idProducto</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>idProducto</name>
+        <rename>id</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>producto</name>
+        <rename>prod</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>rubro</name>
+        <rename>rub</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>proveedor</name>
+        <rename>prov</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -702,8 +666,8 @@ var match;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>256</yloc>
+      <xloc>448</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
